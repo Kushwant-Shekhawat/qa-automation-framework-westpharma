@@ -12,7 +12,7 @@ The framework follows a modular Page Object Model (POM) structure, separating sp
 
 ### Directory Structure
 ```text
-qa-automation-framework/
+qa-automation-framework-westpharma/
 ├── pom.xml                         # Maven build configuration and dependencies
 ├── README.md                       # Comprehensive guide and architecture overview
 ├── sut-app/                        # System Under Test (SUT) Node.js/Express server

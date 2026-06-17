@@ -35,11 +35,11 @@ The automation suite was run locally against the mock Node.js/Express applicatio
 PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 mvn clean test
 
 [INFO] Scanning for projects...
-[INFO] ----------------< com.qa:qa-automation-framework >-----------------
-[INFO] Building qa-automation-framework 1.0-SNAPSHOT
+[INFO] ----------------< com.qa:qa-automation-framework-westpharma >-----------------
+[INFO] Building qa-automation-framework-westpharma 1.0-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
 ...
-[INFO] --- maven-surefire-plugin:3.2.5:test (default-test) @ qa-automation-framework ---
+[INFO] --- maven-surefire-plugin:3.2.5:test (default-test) @ qa-automation-framework-westpharma ---
 ...
 Running TestSuite
 

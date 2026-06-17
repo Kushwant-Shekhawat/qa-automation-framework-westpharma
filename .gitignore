@@ -1,0 +1,19 @@
+# Maven
+target/
+*.class
+
+# Node / SUT Srv
+sut-app/node_modules/
+sut-app/package-lock.json
+
+# IDE Configurations
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+.vscode/
+
+# OS specific files
+.DS_Store
+Thumbs.db

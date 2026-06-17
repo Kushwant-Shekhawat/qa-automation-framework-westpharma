@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+  <configuration>
+    <!-- Report Title in Browser Tab -->
+    <documentTitle>Dummy Pharma Company - Test Execution Report</documentTitle>
+
+    <!-- Report Heading in Header -->
+    <reportName>PharmaSynth Labs - Test Automation Execution Report</reportName>
+
+    <!-- Theme (standard or dark) -->
+    <theme>dark</theme>
+
+    <!-- Custom Timestamp format -->
+    <timeStampFormat>yyyy-MM-dd HH:mm:ss a z</timeStampFormat>
+
+    <!-- Custom CSS styles to match the branding of Dummy Pharma Company (Slate, Teal, Emerald Green) -->
+    <css><![CDATA[
+      /* Custom corporate header style */
+      .nav-wrapper {
+        background-color: #0f172a !important; /* Dark Slate */
+        border-bottom: 2px solid #0d9488 !important; /* Teal border */
+      }
+      .brand-logo {
+        background-color: #0f172a !important;
+        padding-left: 20px !important;
+      }
+      .side-nav {
+        background-color: #1e293b !important;
+      }
+      .side-nav li.active {
+        background-color: #0f766e !important; /* Emerald/Teal active tab */
+      }
+      .card-panel {
+        border-radius: 8px !important;
+        border: 1px solid #334155 !important;
+      }
+      span.test-status {
+        border-radius: 4px !important;
+      }
+      .badge {
+        font-weight: 600 !important;
+      }
+    ]]></css>
+  </configuration>
+</extentreports>

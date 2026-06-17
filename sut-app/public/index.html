@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy Pharma Company - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b132b;
+            --card-bg: rgba(28, 37, 65, 0.65);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-color: #f59e0b;
+            --accent-hover: #d97706;
+            --text-color: #f8fafc;
+            --text-muted: #8da2bb;
+            --nav-bg: rgba(11, 19, 43, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.08) 0px, transparent 40%),
+                radial-gradient(at 80% 20%, rgba(99, 102, 241, 0.1) 0px, transparent 40%);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* Nav Header */
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .welcome-msg {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .welcome-msg span {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-btn {
+            background: var(--accent-color);
+            color: #0f172a;
+            border: none;
+        }
+
+        .chat-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Container */
+        .main-container {
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            padding: 0 24px;
+        }
+
+        .intro {
+            margin-bottom: 32px;
+        }
+
+        .intro h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Controls / Search Bar */
+        .controls-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-wrapper {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(11, 19, 43, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .filter-wrapper {
+            width: 200px;
+        }
+
+        .filter-select {
+            width: 100%;
+            background: rgba(11, 19, 43, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent-color);
+        }
+
+        .search-btn {
+            background: var(--accent-color);
+            color: #0f172a;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Results / Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .universe-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .universe-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-color), #6366f1);
+            opacity: 0.7;
+        }
+
+        .universe-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .card-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-color);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .card-description {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            font-size: 13px;
+        }
+
+        .companion-info {
+            color: var(--text-muted);
+        }
+
+        .companion-info span {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .chapters-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-weight: 600;
+        }
+
+        /* State display */
+        .loading-state, .error-state, .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            color: var(--text-muted);
+            font-size: 16px;
+            display: none;
+        }
+
+        .loading-state {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .error-state {
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #f87171;
+        }
+
+        .error-state button {
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" class="logo">🧬 Dummy Pharma <span>Company</span></a>
+        <div class="nav-actions">
+            <div class="welcome-msg">Welcome, <span id="userName">Pharmacist</span></div>
+            <a href="/chat.html" class="nav-btn chat-btn">💬 Consult Synthetix AI</a>
+            <button class="nav-btn" id="logoutBtn">Log Out</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="intro">
+            <h1>Dummy Pharma Formula Database</h1>
+            <p>Search, filter, and monitor persistent pharmaceutical compound formulations</p>
+        </div>
+
+        <div class="controls-bar">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search by formula name, description, or scientist...">
+            </div>
+            <div class="filter-wrapper">
+                <select class="filter-select" id="themeSelect">
+                    <option value="">All Categories</option>
+                    <option value="Analgesics">Analgesics 💊</option>
+                    <option value="Antibiotics">Antibiotics 🧫</option>
+                    <option value="Probiotics">Probiotics 🧪</option>
+                    <option value="Cardiovascular">Cardiovascular ❤️</option>
+                </select>
+            </div>
+            <button class="search-btn" id="searchBtn">SEARCH</button>
+        </div>
+
+        <div class="results-grid" id="resultsGrid">
+            <!-- Dynamic cards will render here -->
+        </div>
+
+        <div class="loading-state" id="loadingState">
+            Loading compound formulations and scientists list...
+        </div>
+
+        <div class="error-state" id="errorState">
+            <p id="errorMsg">Could not load universes.</p>
+            <button onclick="fetchUniverses()">Retry</button>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+            No formula records found matching search query. Try adjusting criteria.
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const token = localStorage.getItem('auth_token');
+        if (!token || token !== 'mock-jwt-token-12345') {
+            window.location.href = '/login.html';
+        } else {
+            const userName = localStorage.getItem('user_name') || 'Parent';
+            document.getElementById('userName').textContent = userName;
+        }
+
+        const searchInput = document.getElementById('searchInput');
+        const themeSelect = document.getElementById('themeSelect');
+        const searchBtn = document.getElementById('searchBtn');
+        const resultsGrid = document.getElementById('resultsGrid');
+        const loadingState = document.getElementById('loadingState');
+        const errorState = document.getElementById('errorState');
+        const emptyState = document.getElementById('emptyState');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = '/login.html';
+        });
+
+        // Search trigger
+        searchBtn.addEventListener('click', fetchUniverses);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') fetchUniverses();
+        });
+        themeSelect.addEventListener('change', fetchUniverses);
+
+        async function fetchUniverses() {
+            // Reset states
+            resultsGrid.style.display = 'none';
+            loadingState.style.display = 'block';
+            errorState.style.display = 'none';
+            emptyState.style.display = 'none';
+            resultsGrid.innerHTML = '';
+
+            const q = searchInput.value.trim();
+            const theme = themeSelect.value;
+            const url = `/api/search?q=${encodeURIComponent(q)}&theme=${encodeURIComponent(theme)}`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                const data = await response.json();
+
+                loadingState.style.display = 'none';
+
+                if (response.ok && data.success) {
+                    if (data.results.length === 0) {
+                        emptyState.style.display = 'block';
+                    } else {
+                        data.results.forEach(u => {
+                            const card = document.createElement('div');
+                            card.className = 'universe-card';
+                            card.innerHTML = `
+                                <div>
+                                    <div class="card-header">
+                                        <div class="card-title">${escapeHtml(u.name)}</div>
+                                        <div class="card-badge">${escapeHtml(u.theme)}</div>
+                                    </div>
+                                    <div class="card-description">${escapeHtml(u.description)}</div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="companion-info">Scientist: <span>${escapeHtml(u.companion)}</span></div>
+                                    <div class="chapters-badge">Active: ${u.chaptersCount}</div>
+                                </div>
+                            `;
+                            resultsGrid.appendChild(card);
+                        });
+                        resultsGrid.style.display = 'grid';
+                    }
+                } else {
+                    errorMsg.textContent = data.error || 'Failed to fetch universes.';
+                    errorState.style.display = 'block';
+                }
+            } catch (err) {
+                loadingState.style.display = 'none';
+                errorMsg.textContent = 'Network error occurred.';
+                errorState.style.display = 'block';
+            }
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Initial Load
+        window.addEventListener('load', fetchUniverses);
+    </script>
+</body>
+</html>

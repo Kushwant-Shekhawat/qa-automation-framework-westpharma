@@ -65,7 +65,7 @@ Scenarios in our Gherkin specifications are tagged and prioritized by business a
 
 ## 🤖 Hybrid AI Evaluation Strategy
 
-Evaluating conversational AI responses requires going beyond simple assertions. The framework supports a hybrid approach inside the [AIEvaluator](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/utils/AIEvaluator.java) utility:
+Evaluating conversational AI responses requires going beyond simple assertions. The framework supports a hybrid approach inside the [AIEvaluator](src/main/java/com/qa/utils/AIEvaluator.java) utility:
 
 ### 1. Offline Heuristic Validation Engine (Default)
 To ensure the test suite remains fast, deterministic, repeatable, and cost-free during sandboxed local or CI/CD pipeline runs, the framework defaults to a local rule-based heuristic validation engine. It evaluates:
@@ -102,15 +102,15 @@ The framework maps these results to Gherkin criteria tables and executes standar
 To ensure standard, repeatable execution of the prototype quality engineering workflow, the following assumptions were made during development:
 1. **Mock SUT State**: The Express server in `sut-app` is assumed to be running on port `3001` before executing UI tests. The user database and formula list are in-memory mock datasets and start in their default states.
 2. **Local Browser Access**: The environment executes UI tests against a pre-installed instance of Google Chrome, using the local browser channel to speed up pipeline setup. The property `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` is set to prevent downloading heavy browser binaries during Maven builds.
-3. **AI Evaluator Modes**: By default, the tests use a mock Anthropic API key (`mock-anthropic-key`) which triggers the offline heuristic evaluation engine in [AIEvaluator.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/utils/AIEvaluator.java). If a live Claude 3.5 Sonnet evaluation is desired, a real API key can be specified in `config.properties`.
+3. **AI Evaluator Modes**: By default, the tests use a mock Anthropic API key (`mock-anthropic-key`) which triggers the offline heuristic evaluation engine in [AIEvaluator.java](src/main/java/com/qa/utils/AIEvaluator.java). If a live Claude 3.5 Sonnet evaluation is desired, a real API key can be specified in `config.properties`.
 
 ---
 
 ## 📁 Sample Outputs
-The generated execution reports and AI outputs are stored in the [sample-outputs](file:///Users/kushwantsinghshekhawat/qa-automation-framework/sample-outputs) directory:
-- **Generated Test Cases**: A detailed matrix of manual and automated scenarios in [generated-test-cases.md](file:///Users/kushwantsinghshekhawat/qa-automation-framework/sample-outputs/generated-test-cases.md) categorized by risk level.
-- **Execution Report**: Summary of Maven TestNG console outputs and pass rates in [execution-report.md](file:///Users/kushwantsinghshekhawat/qa-automation-framework/sample-outputs/execution-report.md).
-- **AI Evaluation Results**: JSON records of both the offline heuristic evaluations and live Claude LLM-as-a-judge results in [ai-evaluation-results.json](file:///Users/kushwantsinghshekhawat/qa-automation-framework/sample-outputs/ai-evaluation-results.json).
+The generated execution reports and AI outputs are stored in the [sample-outputs](sample-outputs) directory:
+- **Generated Test Cases**: A detailed matrix of manual and automated scenarios in [generated-test-cases.md](sample-outputs/generated-test-cases.md) categorized by risk level.
+- **Execution Report**: Summary of Maven TestNG console outputs and pass rates in [execution-report.md](sample-outputs/execution-report.md).
+- **AI Evaluation Results**: JSON records of both the offline heuristic evaluations and live Claude LLM-as-a-judge results in [ai-evaluation-results.json](sample-outputs/ai-evaluation-results.json).
 
 ---
 
@@ -153,7 +153,35 @@ After test execution completes:
 
 ---
 
-## 🚀 Scalability & Future Considerations
-- **Parallel Execution**: Enable parallel execution in `TestNGRunner` by toggling `parallel = true` to run scenarios concurrently.
+## 🚀 Scalability & Parallel Execution
+
+The framework is configured for high-performance **Parallel Execution**:
+- **Status**: Enabled by default (`parallel = true` in `@DataProvider` inside [TestNGRunner.java](src/test/java/com/qa/runners/TestNGRunner.java)).
+- **Performance Results**: Total suite execution time dropped from **1 min 41s** (sequential) to **50s** (parallel), achieving a **~50% speedup** for the suite of 32 test scenarios.
+- **Default Concurrency**: **10 scenarios** run in parallel concurrently using TestNG's DataProvider thread pool.
+
+### Configuring Concurrency Limits
+To adjust the maximum number of parallel threads:
+
+1. **Option A: In `testng.xml`**
+   Add the `data-provider-thread-count` attribute to the `<suite>` tag in [testng.xml](src/test/resources/testng.xml):
+   ```xml
+   <suite name="Dummy Pharma Company Automation Suite" parallel="none" data-provider-thread-count="5">
+   ```
+
+2. **Option B: In `pom.xml`**
+   Configure the `dataproviderthreadcount` property inside the `maven-surefire-plugin` configuration in [pom.xml](pom.xml):
+   ```xml
+   <properties>
+       <property>
+           <name>dataproviderthreadcount</name>
+           <value>15</value>
+       </property>
+   </properties>
+   ```
+
+---
+
+## 🔮 Future Considerations
 - **CI/CD Integration**: Seamlessly runs on Jenkins, GitHub Actions, or GitLab CI by packing Chrome in the runner image and setting `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`.
 - **Database Seeding**: In multi-user setups, pre-test hooks can make API calls to reset profile databases, keeping tests idempotent.

@@ -9,20 +9,20 @@ This document captures the test runner reports, terminal outputs, and lists the 
 The framework is built using Playwright Java, modularized into Page Object Models (POM), Step Definitions, and API Clients:
 
 1. **Browser Driver Manager**:
-   * [PlaywrightDriver.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/driver/PlaywrightDriver.java): Configures and manages the thread-local Playwright browser instances (`chromium`, `firefox`, `webkit`).
+   * [PlaywrightDriver.java](src/main/java/com/qa/driver/PlaywrightDriver.java): Configures and manages the thread-local Playwright browser instances (`chromium`, `firefox`, `webkit`).
 2. **Page Objects (POM)**:
-   * [LoginPage.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/pages/LoginPage.java): Encapsulates selectors and interactions for email, password inputs, toggle show button, and login submissions.
-   * [SearchPage.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/pages/SearchPage.java): Handles search keyword fields, drug category filters, and formula listing card elements.
-   * [ChatPage.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/pages/ChatPage.java): Manages the AI research assistant settings and chat bubbles elements.
+   * [LoginPage.java](src/main/java/com/qa/pages/LoginPage.java): Encapsulates selectors and interactions for email, password inputs, toggle show button, and login submissions.
+   * [SearchPage.java](src/main/java/com/qa/pages/SearchPage.java): Handles search keyword fields, drug category filters, and formula listing card elements.
+   * [ChatPage.java](src/main/java/com/qa/pages/ChatPage.java): Manages the AI research assistant settings and chat bubbles elements.
 3. **API Client**:
-   * [APIClient.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/main/java/com/qa/api/APIClient.java): Playwright `APIRequestContext` client managing headers, authentication cookies, login, search, and chat endpoint requests.
+   * [APIClient.java](src/main/java/com/qa/api/APIClient.java): Playwright `APIRequestContext` client managing headers, authentication cookies, login, search, and chat endpoint requests.
 4. **Step Definitions (Glue Code)**:
-   * [LoginSteps.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/test/java/com/qa/stepdefs/LoginSteps.java)
-   * [SearchSteps.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/test/java/com/qa/stepdefs/SearchSteps.java)
-   * [ChatSteps.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/test/java/com/qa/stepdefs/ChatSteps.java)
-   * [ApiSteps.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/test/java/com/qa/stepdefs/ApiSteps.java)
-   * [AIEvalSteps.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/test/java/com/qa/stepdefs/AIEvalSteps.java)
-   * [Hooks.java](file:///Users/kushwantsinghshekhawat/qa-automation-framework/src/test/java/com/qa/stepdefs/Hooks.java)
+   * [LoginSteps.java](src/test/java/com/qa/stepdefs/LoginSteps.java)
+   * [SearchSteps.java](src/test/java/com/qa/stepdefs/SearchSteps.java)
+   * [ChatSteps.java](src/test/java/com/qa/stepdefs/ChatSteps.java)
+   * [ApiSteps.java](src/test/java/com/qa/stepdefs/ApiSteps.java)
+   * [AIEvalSteps.java](src/test/java/com/qa/stepdefs/AIEvalSteps.java)
+   * [Hooks.java](src/test/java/com/qa/stepdefs/Hooks.java)
 
 ---
 
@@ -99,6 +99,6 @@ Scenario: Search with no matching results displays empty state             # src
 ### 📂 Execution Reports Formats
 
 Upon completion, Maven outputs the reports in three formats:
-1. **Cucumber HTML Report**: Located at [target/cucumber-reports/cucumber.html](file:///Users/kushwantsinghshekhawat/qa-automation-framework/target/cucumber-reports/cucumber.html) which includes step-by-step statistics, tags, timings, and screenshots embedded directly into all steps (passed and failed).
+1. **Cucumber HTML Report**: Located at [target/cucumber-reports/cucumber.html](target/cucumber-reports/cucumber.html) which includes step-by-step statistics, tags, timings, and screenshots embedded directly into all steps (passed and failed).
 2. **Cucumber JSON Report**: Located at `target/cucumber-reports/cucumber.json` for integration with CI dashboards (e.g., Jenkins Cucumber Reports plugin).
-3. **Extent HTML Spark Report**: Located at [target/extent-reports/extent-report.html](file:///Users/kushwantsinghshekhawat/qa-automation-framework/target/extent-reports/extent-report.html) which provides a dashboard-driven visual interface featuring inline base64-encoded screenshots for all UI/Chat test cases.
+3. **Extent HTML Spark Report**: Located at [target/extent-reports/extent-report.html](target/extent-reports/extent-report.html) which provides a dashboard-driven visual interface featuring inline base64-encoded screenshots for all UI/Chat test cases.

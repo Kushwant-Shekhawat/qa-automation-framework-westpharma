@@ -18,7 +18,7 @@ import org.testng.annotations.DataProvider;
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 
     @Override
-    @DataProvider(parallel = false) // Set to true to run scenarios in parallel!
+    @DataProvider(parallel = true) // Set to true to run scenarios in parallel!
     public Object[][] scenarios() {
         return super.scenarios();
     }

@@ -156,6 +156,13 @@ The generated execution reports and AI outputs are stored in the [sample-outputs
 - **Generated Test Cases**: A detailed matrix of manual and automated scenarios in [generated-test-cases.md](sample-outputs/generated-test-cases.md) categorized by risk level.
 - **Execution Report**: Summary of Maven TestNG console outputs and pass rates in [execution-report.md](sample-outputs/execution-report.md).
 - **AI Evaluation Results**: JSON records of both the offline heuristic evaluations and live Claude LLM-as-a-judge results in [ai-evaluation-results.json](sample-outputs/ai-evaluation-results.json).
+- **Interactive Cucumber HTML Report**: Located at [cucumber-report.html](sample-outputs/cucumber-report.html) (interactive page with embedded screenshots).
+- **Interactive Extent Spark HTML Report**: Located at [extent-report.html](sample-outputs/extent-report.html) (interactive dashboard showing metric distribution).
+
+> [!TIP]
+> Since GitHub does not natively render raw HTML files in the browser interface, you can preview the fully rendered interactive dashboards instantly using HTMLPreview by appending the raw file URL to the preview service, e.g.:
+> * [Interactive Cucumber Report Web Preview](https://htmlpreview.github.io/?https://github.com/Kushwant-Shekhawat/qa-automation-framework-westpharma/blob/main/sample-outputs/cucumber-report.html)
+> * [Interactive Extent Report Web Preview](https://htmlpreview.github.io/?https://github.com/Kushwant-Shekhawat/qa-automation-framework-westpharma/blob/main/sample-outputs/extent-report.html)
 
 ---
 
